@@ -1,12 +1,12 @@
 ## Publish
 
-The Publish Plugin decouples the timing of data updates in the [QOR Admin](http://github.com/qor/admin) interface from the display of data on the frontend of the website which [QOR Admin](http://github.com/qor/admin) is backing. Effectively, a [GORM](https://github.com/jinzhu/gorm) model can be withheld from frontend display until it is "published".
+The Publish Plugin decouples the timing of data updates in the [QOR Admin](http://github.com/itech-eng/admin) interface from the display of data on the frontend of the website which [QOR Admin](http://github.com/itech-eng/admin) is backing. Effectively, a [GORM](https://github.com/jinzhu/gorm) model can be withheld from frontend display until it is "published".
 
-[![GoDoc](https://godoc.org/github.com/qor/publish?status.svg)](https://godoc.org/github.com/qor/publish)
+[![GoDoc](https://godoc.org/github.com/itech-eng/publish?status.svg)](https://godoc.org/github.com/itech-eng/publish)
 
 ## Usage
 
-Embed `publish.Status` as an anonymous field in your model to apply the [Publish](https://github.com/qor/publish) feature.
+Embed `publish.Status` as an anonymous field in your model to apply the [Publish](https://github.com/itech-eng/publish) feature.
 
 ```go
 type Product struct {
@@ -41,7 +41,7 @@ publish.Discard(&product)
 
 ## Publish Event
 
-To avoid a large amount (*n*) of draft events when applying the [Publish](https://github.com/qor/publish) feature to a set of (*n*) records, it is possible to batch the events into a single, high-level event which represents the set of (*n*) events. To do this, use the `PublishEvent` feature.
+To avoid a large amount (*n*) of draft events when applying the [Publish](https://github.com/itech-eng/publish) feature to a set of (*n*) records, it is possible to batch the events into a single, high-level event which represents the set of (*n*) events. To do this, use the `PublishEvent` feature.
 
 For example, when sorting products, say you have changed 100 products' positions but don't want to show 100 products as draft nor have to go through the horrible process of publishing 100 products, one at a time. Instead, you can show a single, high-level event such as `Changed products' sorting` in the draft page. After publishing this single event, all of the associated position changes will be published.
 
@@ -80,7 +80,7 @@ func init() {
 
 ## Store all changes in draft table by default
 
-If you want all changes made to be stored in the draft table by default, initialize [QOR Admin](http://github.com/qor/admin) with the [Publish](https://github.com/qor/publish) value's draft DB. If you then want to manage those draft data, add the [Publish](https://github.com/qor/publish) value as resource to [QOR Admin](../chapter2/setup.md):
+If you want all changes made to be stored in the draft table by default, initialize [QOR Admin](http://github.com/itech-eng/admin) with the [Publish](https://github.com/itech-eng/publish) value's draft DB. If you then want to manage those draft data, add the [Publish](https://github.com/itech-eng/publish) value as resource to [QOR Admin](../chapter2/setup.md):
 
 ```go
 Admin := admin.New(&qor.Config{DB: Publish.DraftDB()})
